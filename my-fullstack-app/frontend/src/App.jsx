@@ -15,43 +15,49 @@ import SalesLeadDetails from "./sales/LeadDetails";
 import SalesLeadEdit from "./sales/EditLead";
 import { userDataContext } from "./context/UserContext";
 
-
-// ✅ Define route wrappers outside App so they don’t recreate on every render
+// Route wrappers
 const AdminRoute = ({ userdata, children }) => {
   if (!userdata) return <Navigate to="/login" replace />;
-  if (userdata.role !== "admin") return <Navigate to="/" replace />;
+  if (userdata.role !== "admin") return <Navigate to="/login" replace />;
   return children;
 };
 
 const ProtectedRoute = ({ userdata, role, children }) => {
   if (!userdata) return <Navigate to="/login" replace />;
-  if (role && userdata.role !== role) return <Navigate to="/" replace />;
+  if (role && userdata.role !== role) return <Navigate to="/login" replace />;
   return children;
 };
 
 const PublicRoute = ({ userdata, children }) => {
   if (userdata) {
+    // Redirect logged-in users based on role
     if (userdata.role === "admin") return <Navigate to="/admin/dashboard" replace />;
     if (userdata.role === "salesman") return <Navigate to="/sales/dashboard" replace />;
   }
   return children;
 };
 
+const RequireAuth = ({ userdata, children }) => {
+  if (!userdata) return <Navigate to="/login" replace />;
+  return children;
+};
 
 const App = () => {
   const { userdata } = useContext(userDataContext);
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* ✅ Only show Nav when logged in */}
+      {/* Show Nav only when logged in */}
       {userdata && <Nav />}
 
       <div className={userdata ? "pt-16" : ""}>
         <Routes>
           {/* Public routes */}
-          <Route path="/" element={<Home />} />
           <Route path="/signup" element={<PublicRoute userdata={userdata}><Signup /></PublicRoute>} />
           <Route path="/login" element={<PublicRoute userdata={userdata}><Login /></PublicRoute>} />
+
+          {/* Home route accessible only to logged-in users */}
+          <Route path="/" element={<RequireAuth userdata={userdata}><Home /></RequireAuth>} />
 
           {/* Admin routes */}
           <Route path="/admin/dashboard" element={<AdminRoute userdata={userdata}><AdminDashboard /></AdminRoute>} />
@@ -66,8 +72,8 @@ const App = () => {
           <Route path="/sales/leads/:id" element={<ProtectedRoute userdata={userdata} role="salesman"><SalesLeadDetails /></ProtectedRoute>} />
           <Route path="/sales/leads/edit/:id" element={<ProtectedRoute userdata={userdata} role="salesman"><SalesLeadEdit /></ProtectedRoute>} />
 
-          {/* Catch-all */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* Catch-all: redirect to login */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </div>
     </div>
