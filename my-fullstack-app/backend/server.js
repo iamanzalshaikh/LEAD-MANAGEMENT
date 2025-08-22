@@ -22,7 +22,7 @@ const app = express();
 
 // CORS middleware with credentials support
 app.use(cors({
-  origin: 'http://localhost:5173', // frontend origin
+  origin: 'https://lead-management-eu5r.onrender.com', // frontend origin
   credentials: true,
 }));
 
