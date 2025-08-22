@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { userDataContext } from '../context/userContext';
+import { userDataContext } from "../context/UserContext";
 import { toast } from 'react-toastify';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
