@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css'; 
 import AuthProvider from './context/AuthContext';
-import UserContext from './context/userContext';
+import UserContext from './context/UserContext';
+
 import { BrowserRouter } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
