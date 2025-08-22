@@ -13,7 +13,7 @@ import LeadList from "./admin/LeadList";
 import SalespersonPerformance from "./admin/SalespersonPerformance";
 import SalesLeadDetails from "./sales/LeadDetails";
 import SalesLeadEdit from "./sales/EditLead";
-import { userDataContext } from "./context/userContext";
+import { userDataContext } from "./context/UserContext";
 
 
 // ✅ Define route wrappers outside App so they don’t recreate on every render
