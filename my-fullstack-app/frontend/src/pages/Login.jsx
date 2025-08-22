@@ -12,43 +12,38 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const { serverUrl, login } = useContext(AuthContext); // added login here
-  const { getCurrentUser } = useContext(userDataContext); // get getCurrentUser from userDataContext
+  const { serverUrl, login } = useContext(AuthContext);
+  const { getCurrentUser } = useContext(userDataContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-    //   const response = await axios.post(`${serverUrl}/api/auth/login`, {
-    //     email,
-    //     password,
-    //   });
-
       const response = await axios.post(`${serverUrl}/api/auth/login`, {
-  email,
-  password,
-}, {
-  withCredentials: true
-});
+        email,
+        password,
+      }, {
+        withCredentials: true
+      });
+
       console.log('Login successful:', response.data);
       toast.success(response.data.message || 'Login successful!');
 
       if (login) {
-        login(response.data.user); // update AuthContext state
+        login(response.data.user);
       }
 
       if (getCurrentUser) {
-        await getCurrentUser(); // fetch current user after login
+        await getCurrentUser();
       }
 
-      // Redirect based on user role
       if (response.data.user.role === 'admin') {
         navigate('/admin/dashboard');
       } else if (response.data.user.role === 'salesman') {
         navigate('/sales/dashboard');
       } else {
-        navigate('/'); // Default for general users
+        navigate('/');
       }
     } catch (error) {
       console.error('Login error:', error.response?.data || error.message);
@@ -128,6 +123,21 @@ const Login = () => {
           <p className="text-center text-gray-600 text-xs mt-4">
             Don't have an account? <Link to="/signup" className="text-blue-500 hover:text-blue-800">Sign Up</Link>
           </p>
+
+          {/* ✅ Added Test Accounts Info */}
+          <p className="text-center text-gray-600 text-sm mt-6">
+            <span className="font-semibold">Test Accounts (password: 12345678) admin@gmailcom  </span>
+            <br />
+            admin@gmailcom 
+            <br />
+            salesmen1@gmail.com
+            <br />
+            salesmen2@gmail.com
+            <br />
+            salesmen3@gmail.com
+            <br />
+            salesmen4@gmail.com
+          </p>
         </form>
       </div>
     </div>
@@ -135,3 +145,4 @@ const Login = () => {
 };
 
 export default Login;
+
