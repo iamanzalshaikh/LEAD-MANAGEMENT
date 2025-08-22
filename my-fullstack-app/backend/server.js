@@ -21,9 +21,10 @@ connectDB();
 const app = express();
 
 // CORS middleware with credentials support
+
 app.use(cors({
-  origin: 'leatmanagement.netlify.app', // frontend origin
-  credentials: true,
+  origin: "https://leatmanagement.netlify.app", // include https://
+  credentials: true, // allow cookies if needed
 }));
 
 // Middleware
