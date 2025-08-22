@@ -43,7 +43,7 @@ const SalesmanDashboard = () => {
     try {
       setLoading(true);
 
-      // 📊 Fetch main stats
+      //  Fetch main stats
       const statsRes = await axios.get(`${serverUrl}/api/dashboard/salesman/${salesmanId}/stats`);
       console.log("Salesman stats from API:", statsRes.data);
 
@@ -56,7 +56,7 @@ const SalesmanDashboard = () => {
         conversionRate: parseFloat(s.conversionRate || 0)
       });
 
-      // 📈 Fetch monthly trends
+      //  Fetch monthly trends
       const trendsRes = await axios.get(`${serverUrl}/api/dashboard/monthly-trends?salesmanId=${salesmanId}`);
       const trendsData = Array.isArray(trendsRes.data) ? trendsRes.data : [];
 
@@ -82,7 +82,7 @@ const SalesmanDashboard = () => {
     }
   };
 
-  // 🔹 Charts
+  //  Charts
   const monthlyTrendsData = {
     labels: monthlyTrends.map(t => t.month),
     datasets: [
