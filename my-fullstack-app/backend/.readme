@@ -1,0 +1,131 @@
+// [ authRouter.post("/signup", signup);
+// authRouter.post("/login", login);
+// authRouter.get("/logout", logout);  ]  [ userRouter.get("/getCurrentUser", isAuth, getCurrentUser)   ]   [ 
+// app.use("/api/auth", authRouter);
+// app.use("/api/user", userRouter);  ]  endpoints and [ import React, { createContext } from 'react';
+
+// export const AuthContext = createContext();
+
+// const AuthProvider = ({ children }) => {
+//     let serverUrl = "http://localhost:8000";
+
+//     let value = {
+//         serverUrl
+//     };
+
+//     return (
+//         <AuthContext.Provider value={value}>
+//             {children}
+//         </AuthContext.Provider>
+//     );
+// };
+
+// export default AuthProvider;   ]  use serverurl [ C:\Users\ANZAL\Desktop\my-fullstack-app\frontend\src\context\AuthContext.jsx  ]  [  import { createContext, useContext, useEffect, useState } from "react";
+// import axios from "axios";
+// import { AuthContext } from "./AuthContext";
+
+// export const UserDataContext = createContext();
+
+// function UserContext({ children }) {
+//   const [userdata, setUserData] = useState(null);
+//   const { serverUrl } = useContext(AuthContext);
+
+//   const getCurrentUser = async () => {
+//     try {
+//       const result = await axios.get(serverUrl + "/api/user/getCurrentuser", {
+//         withCredentials: true,
+//       });
+//       setUserData(result.data);
+//       console.log(result.data);
+//     } catch (error) {
+//       setUserData(null);
+//       console.log("Error fetching current user:", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     // Delay fetch to give time for cookie to be set
+//     const timer = setTimeout(() => {
+//       getCurrentUser();
+//     }, 300); // 300ms
+
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   const value = {
+//     userdata,
+//     setUserData,
+//     getCurrentUser,
+//   };
+
+//   return <UserDataContext.Provider value={value}>
+//     {children}
+    
+//     </UserDataContext.Provider>;
+// }
+
+// export default UserContext;    ]  [ C:\Users\ANZAL\Desktop\my-fullstack-app\frontend\src\context\AuthContext.jsx  ]  getcurrentUser and i want that to create like that for signup and for login and i need role based login okay ?? [  import mongoose from "mongoose";
+
+// const userSchema = new mongoose.Schema({
+//   name: {
+//      type: String, 
+//      required: true
+//      },
+//   email: { type: String, unique: true, required: true },
+//   password: { type: String, required: true },
+//   role: { 
+//     type: String, 
+//     enum: ["admin", "salesman"], 
+//     default: "salesman" 
+//   }
+// }, { timestamps: true }); // optional: adds createdAt and updatedAt
+
+// const User = mongoose.model("User", userSchema);
+
+// export default User;    ]  please make it please use simple coding please use simple coding and [ Features to Implement
+// 1. Lead Management
+// Add New Lead Form with real-time score calculation
+// Lead List with Filters (by score, status, salesperson)
+// Lead Details Page showing full information and history
+// Edit/Update Lead functionality
+// Delete Lead with confirmation
+// 2. Auto Assignment
+// Calculate Best Salesperson for each new lead
+// Show Assignment Recommendation with reason
+// Allow Manual Override of assignment
+// Track Assignment History
+
+// 3. Performance Dashboard
+// Total Leads Added (daily/weekly/monthly)
+// Lead Score Distribution (how many high/medium/low score leads)
+// Salesperson Performance (conversion rates, active leads)
+// Recent Activities (latest leads, assignments)
+// 4. Basic Analytics
+// Lead Conversion Funnel (New → Contacted → Converted)
+// Salesperson Comparison charts
+// Monthly Performance Trends
+// Top Performing Salespeople
+
+// UI Requirements
+// Keep it simple but professional:
+// Design Guidelines:
+// Clean, business-appropriate design
+// Use a UI library (Material-UI, Ant Design, or Bootstrap)
+// Consistent color scheme (blue/green tones work well for finance)
+// Clear navigation between different sections
+// Responsive design that works on tablets/phones
+// Key Components:
+// 1. Score Display - Visual indicator (progress bar or colored badge)
+// 2. Assignment Card - Shows recommended salesperson with confidence
+// 3. Performance Charts - Simple bar/line charts
+// 4. Lead Status Badges - Color-coded status indicators
+// 5. Data Tables - Sortable, filterable lead/salesperson lists  ]  when admin login and salesmen login we need different so make it 
+
+
+
+
+
+
+
+
+// “I’ve built a mini CRM system where leads can be created, updated, deleted, and automatically scored into High/Medium/Low priority. Salespeople are also tracked, including their success rate and active leads. On top of this, I added a dashboard API with three key analytics: overall stats, a conversion funnel, and monthly trends. So the backend is about 75–80% complete — it covers the main workflows and analytics. What I didn’t add yet are advanced features like notifications, frontend dashboards, and role-based permissions, but the foundation is ready for those.”
