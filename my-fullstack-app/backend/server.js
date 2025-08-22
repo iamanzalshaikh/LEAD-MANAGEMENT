@@ -22,7 +22,7 @@ const app = express();
 
 // CORS middleware with credentials support
 app.use(cors({
-  origin: 'https://lead-management-eu5r.onrender.com', // frontend origin
+  origin: 'leatmanagement.netlify.app', // frontend origin
   credentials: true,
 }));
 
