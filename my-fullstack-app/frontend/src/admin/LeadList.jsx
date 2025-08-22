@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { userDataContext } from "./context/UserContext";
+import { userDataContext } from "../context/UserContext";
 import { toast } from "react-toastify";
 import Spinner from "../component/Spinner";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
