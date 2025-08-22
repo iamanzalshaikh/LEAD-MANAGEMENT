@@ -45,7 +45,7 @@ const AdminDashboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    let isMounted = true; // ✅ prevent updates if component unmounts
+    let isMounted = true; 
 
     const fetchDashboardData = async () => {
       try {
