@@ -1,7 +1,7 @@
 import Lead from "../model/leadModel.js";
 import Salesperson from "../model/salesModel.js";
 
-// // 📊 Dashboard Stats
+// //  Dashboard Stats
 export const getDashboardStats = async (req, res) => {
   try {
     const totalLeads = await Lead.countDocuments();
@@ -27,7 +27,7 @@ export const getDashboardStats = async (req, res) => {
 
 
 
-// 🔄 Conversion Funnel
+//  Conversion Funnel
 export const getConversionFunnel = async (req, res) => {
   try {
     const statuses = ["New", "Contacted", "Qualified", "Converted", "Lost"];
@@ -45,7 +45,7 @@ export const getConversionFunnel = async (req, res) => {
 
 
 
-// 📈 Monthly Trends
+//  Monthly Trends
 export const getMonthlyTrends = async (req, res) => {
   try {
     const trends = await Lead.aggregate([
@@ -68,10 +68,10 @@ export const getMonthlyTrends = async (req, res) => {
 };
 
 
-// Add this import at the top if not already there
+
 import User from "../model/userModel.js";
 
-// Add this new function at the end of your dashboardController.js
+
 export const getSalespeopleStats = async (req, res) => {
   try {
     const salespeople = await User.find({ role: "salesman" });
